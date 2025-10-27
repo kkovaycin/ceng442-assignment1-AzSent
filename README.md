@@ -1,1 +1,1 @@
-# ceng442-assignment1-AzeriSent
+# ceng442-assignment1-AzSent
