@@ -1,24 +1,42 @@
 # ceng442-assignment1-AzSent
 🧠 Embedding Training (Word2Vec & FastText)
 
-The preprocessed Azerbaijani text data from all cleaned datasets were merged into a single corpus. Two models were trained to generate meaningful embeddings:
+The preprocessed Azerbaijani text data from all cleaned datasets were merged into a single corpus.
+Two models were trained to generate distributed representations of words:
 
 Word2Vec (Skip-gram)
-vector_size=300, window=5, min_count=3, negative=10, epochs=10
+
+vector_size=300
+
+window=5
+
+min_count=3
+
+negative=10
+
+epochs=10
 
 FastText (Skip-gram + subword)
-vector_size=300, window=5, min_count=3, min_n=3, max_n=6, epochs=10
 
-Both models were saved under:
+vector_size=300
+
+window=5
+
+min_count=3
+
+min_n=3, max_n=6
+
+epochs=10
+
+📁 Model Files:
 
 embeddings/
  ├─ word2vec.model
  └─ fasttext.model
 
 
-🧩 Justification:
 Azerbaijani is an agglutinative and morphologically rich language.
-FastText’s subword mechanism was expected to improve coverage and handle unseen or rare word forms, while Word2Vec served as a strong, interpretable baseline.
+Therefore, FastText’s subword-based representation was expected to better handle rare and unseen word forms, while Word2Vec served as a strong contextual baseline.
 
 ⚖️ Comparison of Word2Vec and FastText
 📊 Lexical Coverage
@@ -29,17 +47,16 @@ train__3__2col	0.990	0.990
 train-00000-of-00001_2col	0.943	0.943
 merged_dataset_CSV__1__2col	0.949	0.949
 
-✅ Both models achieved high lexical coverage, but FastText provided slightly better out-of-vocabulary (OOV) tolerance thanks to its subword structure.
+✅ Both models achieved high lexical coverage, but FastText offers slightly higher tolerance for out-of-vocabulary (OOV) words.
 
-🧩 Similarity Results
+🧩 Similarity Evaluation
 Metric	Word2Vec	FastText
 Synonyms	0.361	0.424
 Antonyms	0.310	0.438
 
 💬 Interpretation:
-FastText reached higher synonym similarity, proving its morphological sensitivity.
-However, antonyms appeared slightly closer in the vector space due to shared subwords (e.g., bahalı–ucuz).
-Word2Vec, on the other hand, preserved clearer semantic separation.
+FastText reached higher synonym similarity due to its subword understanding,
+while Word2Vec maintained better antonym separation — which is beneficial for sentiment-based tasks.
 
 🔍 Nearest Neighbor Examples
 Word	Word2Vec Neighbors	FastText Neighbors
@@ -49,31 +66,48 @@ ucuz	qiymət, bazar	ucuzdu, ucuzluğu
 mükəmməl	möhteşəm	mükəmməldi, mükəmməlsiz
 
 🧠 Observation:
-Word2Vec captures contextual meaning, while FastText groups morphological variants together.
-Thus, Word2Vec emphasizes semantic closeness, whereas FastText highlights word-form relationships.
+Word2Vec focuses on contextual semantics,
+whereas FastText better captures morphological variations within the same root form.
 
 🔁 Reproducibility
-
-Environment:
-Python 3.10+, Google Colab (A100 GPU)
-Libraries: Gensim 4.3.2, Pandas 2.2.3, Regex, FTFY, Scikit-learn 1.4+
-
 ⚙️ Installation
+
+To recreate the environment, install all required dependencies:
+
 pip install -r requirements.txt
 
 ▶️ Execution Steps
+
+Run the project step-by-step from the main directory:
+
+1️⃣ Preprocess the datasets
+
 python preprocess_pipeline.py
+
+
+2️⃣ Train the Word2Vec & FastText models
+
 python train_embeddings.py
+
+
+3️⃣ Compare the trained models
+
 python compare_models.py
 
 
-Project Outputs:
+📂 Project Output Structure
 
 CENG442_Assignment1/
- ├─ embeddings/     # Trained models
- ├─ outputs/        # Comparison results
- └─ corpus_all.txt  # Final domain-tagged corpus
+ ├─ embeddings/     # Trained Word2Vec & FastText models
+ ├─ outputs/        # Comparison results (coverage, similarity)
+ ├─ raw_data/       # Original unprocessed datasets
+ ├─ corpus_all.txt  # Final merged corpus
+ ├─ requirements.txt
+ └─ README.md
 
 
-🧾 All similarity, coverage, and neighbor analysis results are automatically saved in
-outputs/compare.txt.
+🧾 All metrics and qualitative results (coverage, synonym/antonym scores, nearest neighbors)
+are automatically saved inside:
+
+outputs/compare.txt
+
