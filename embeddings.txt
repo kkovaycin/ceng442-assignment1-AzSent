@@ -1,8 +1,0 @@
-fasttext.model: https://drive.google.com/file/d/1cA4fcV4kBkE7zcMxYkvAiizOPyB1o1jH/view?usp=drive_link
-fasttext.model.syn1neg.npy: https://drive.google.com/file/d/1rKrWSeOhBkCMcYyER6al4c-7Pg5V8w6L/view?usp=drive_link
-fasttext.model.wv.vectors_ngrams.npy: https://drive.google.com/file/d/1Y9HLV96rn5B7eElzZvwhKVgxARxX8u0i/view?usp=drive_link
-fasttext.model.wv.vectors_vocab.npy: https://drive.google.com/file/d/1UIa5-tiirQs4UeMwv6gXk_nBb3x5R69r/view?usp=drive_link
-word2vec.model: https://drive.google.com/file/d/1h05tDUXTsVw0P-h6vgGDl0NH1GZR3qJV/view?usp=drive_link
-word2vec.model.syn1neg.npy: https://drive.google.com/file/d/1gKCy_vuQQsE54D8fsFe7I7QezsAnypjS/view?usp=drive_link
-word2vec.model.wv.vectors.npy: https://drive.google.com/file/d/1ykhI5Gn_6DHSVonaqTnAv-KgDEmPzmvu/view?usp=drive_link
-
