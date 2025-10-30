@@ -51,9 +51,11 @@ There were some mini challenges that were implemented to enhance the quality of 
 - Tagging the next three tokens with tag `_NEG` after the negator altered nearest neighbors significantly:
    - Before: `Çox gözəl vaxtlar idi Xoşqədəm yoxdu Zaur yox idi Bayramlar Baboslar hər şey təbiidir`
    - After: `çox gözəl vaxtlar idi xoşqədəm yoxdu zaur yox idi_NEG bayramlar_NEG baboslar_NEG hər şey təbiidir`
+
  ...
 
 Domain-Aware
+
 ...
 
 🧠 Embedding Training (Word2Vec & FastText)
