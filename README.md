@@ -111,7 +111,8 @@ Here are some examples from corpus for different domains:
 - `domreviews salam internetimiz çox pis işləyir günlərlə internet olmur daima kəsilir num gün tamam olmamış bitir`
 
 '''
-# 🧠 Embedding Training (Word2Vec & FastText)
+'''
+### 🧠 Embedding Training (Word2Vec & FastText)
 
 ## 📘 Overview
 The preprocessed Azerbaijani text data from all cleaned datasets were merged into a single corpus.  
@@ -206,4 +207,38 @@ but **FastText** offers slightly higher tolerance for **out-of-vocabulary (OOV)*
 
 ### ⚙️ Installation
 To recreate the environment, install all required dependencies:
+pip install -r requirements.txt
+
+---
+
+### ▶️ Execution Steps
+Run the project step-by-step from the main directory:
+
+1️⃣ **Preprocess the datasets**
+python preprocess_pipeline.py
+
+2️⃣ **Train the Word2Vec & FastText models**
+python train_embeddings.py
+
+3️⃣ **Compare the trained models**
+python compare_models.py
+
+---
+
+### 📂 Project Output Structure
+CENG442_Assignment1/
+ ├─ embeddings/     # Trained Word2Vec & FastText models  
+ ├─ outputs/        # Comparison results (coverage, similarity)  
+ ├─ raw_data/       # Original unprocessed datasets  
+ ├─ corpus_all.txt  # Final merged corpus  
+ ├─ requirements.txt  
+ └─ README.md  
+
+---
+
+### 🧾 Results
+All metrics and qualitative results (coverage, synonym/antonym scores, nearest neighbors)  
+are automatically saved inside:
+outputs/compare.txt
+'''
 
