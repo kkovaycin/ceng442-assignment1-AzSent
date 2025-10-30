@@ -114,13 +114,13 @@ Here are some examples from corpus for different domains:
 '''
 ### 🧠 Embedding Training (Word2Vec & FastText)
 
-## 📘 Overview
+### 📘 Overview
 The preprocessed Azerbaijani text data from all cleaned datasets were merged into a single corpus.  
 Two models were trained to generate **distributed representations of words**:
 
 ---
 
-### ⚙️ Word2Vec (Skip-gram)
+#### ⚙️ Word2Vec (Skip-gram)
 | Parameter | Value |
 |:-----------|:------:|
 | vector_size | 300 |
@@ -131,7 +131,7 @@ Two models were trained to generate **distributed representations of words**:
 
 ---
 
-### ⚙️ FastText (Skip-gram + Subword)
+#### ⚙️ FastText (Skip-gram + Subword)
 | Parameter | Value |
 |:-----------|:------:|
 | vector_size | 300 |
@@ -143,23 +143,22 @@ Two models were trained to generate **distributed representations of words**:
 
 ---
 
-### 📁 Model Files
+#### 📁 Model Files
 embeddings/
- ├─ word2vec.model
- └─ fasttext.model
+ ├─ embeddings.txt
 
 ---
 
-## 🌍 Language Context
+#### 🌍 Language Context
 Azerbaijani is an **agglutinative and morphologically rich language**.  
 Therefore, **FastText’s subword-based representation** was expected to better handle **rare and unseen word forms**,  
 while **Word2Vec** served as a **strong contextual baseline**.
 
 ---
 
-## ⚖️ Comparison of Word2Vec and FastText
+### ⚖️ Comparison of Word2Vec and FastText
 
-### 📊 Lexical Coverage
+#### 📊 Lexical Coverage
 | Dataset | Word2Vec | FastText |
 |:---------|:----------:|:----------:|
 | labeled-sentiment_2col | 0.932 | 0.932 |
@@ -173,7 +172,7 @@ but **FastText** offers slightly higher tolerance for **out-of-vocabulary (OOV)*
 
 ---
 
-### 🧩 Similarity Evaluation
+#### 🧩 Similarity Evaluation
 | Metric | Word2Vec | FastText |
 |:--------|:----------:|:----------:|
 | Synonyms | 0.361 | **0.424** |
@@ -181,13 +180,13 @@ but **FastText** offers slightly higher tolerance for **out-of-vocabulary (OOV)*
 
 ---
 
-### 💬 Interpretation
+#### 💬 Interpretation
 - **FastText** reached higher **synonym similarity** due to its **subword understanding**.  
 - **Word2Vec** maintained better **antonym separation**, which is beneficial for **sentiment-based tasks**.
 
 ---
 
-### 🔍 Nearest Neighbor Examples
+#### 🔍 Nearest Neighbor Examples
 | Word | Word2Vec Neighbors | FastText Neighbors |
 |:------|:-------------------|:-------------------|
 | **yaxşı** | `<RATING_POS>`, awesome | yaxşılı, yaxşıca |
@@ -203,15 +202,15 @@ but **FastText** offers slightly higher tolerance for **out-of-vocabulary (OOV)*
 
 ---
 
-## 🔁 Reproducibility
+### 🔁 Reproducibility
 
-### ⚙️ Installation
+#### ⚙️ Installation
 To recreate the environment, install all required dependencies:
 pip install -r requirements.txt
 
 ---
 
-### ▶️ Execution Steps
+#### ▶️ Execution Steps
 Run the project step-by-step from the main directory:
 
 1️⃣ **Preprocess the datasets**
