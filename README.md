@@ -238,6 +238,6 @@ CENG442_Assignment1/
 ### 🧾 Results
 All metrics and qualitative results (coverage, synonym/antonym scores, nearest neighbors)  
 are automatically saved inside:
-outputs/compare.txt
+outputs/
 '''
 
