@@ -119,29 +119,14 @@ The preprocessed Azerbaijani text data from all cleaned datasets were merged int
 Two models were trained to generate **distributed representations of words**:
 
 ---
-
-#### ⚙️ Word2Vec (Skip-gram)
-| Parameter | Value |
-|:-----------|:------:|
-| vector_size | 300 |
-| window | 5 |
-| min_count | 3 |
-| negative | 10 |
-| epochs | 10 |
+#### ⚙️ Embedding Configuration
+Both **Word2Vec** and **FastText** were trained using the Skip-gram architecture  
+with shared core parameters: `vector_size=300`, `window=5`, `min_count=3`, `epochs=10`.  
+Word2Vec employed **negative sampling (negative=10)**,  
+while FastText additionally modeled **subword information (min_n=3, max_n=6)**.
 
 ---
 
-#### ⚙️ FastText (Skip-gram + Subword)
-| Parameter | Value |
-|:-----------|:------:|
-| vector_size | 300 |
-| window | 5 |
-| min_count | 3 |
-| min_n | 3 |
-| max_n | 6 |
-| epochs | 10 |
-
----
 
 #### 📁 Model Files
 embeddings/
