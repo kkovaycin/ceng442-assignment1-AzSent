@@ -1,4 +1,61 @@
 # ceng442-assignment1-AzSent
+
+Data & Goal
+
+In this project, the primary objective is to clean Azerbaijani sentiment datasets given, to map labels to sentiment values in range from 0 to 1, more specifically {0.0, 0.5, 1.0},and save to 2-column excel files, to generate a cleaned and combined corpus, and train Word2Vec and FastTex with the cleaned data. 
+It is chosen to assign 0.5 for neutral sentiment due to its continuous position between negative=0.0 and positive=1.0 as midpoint, besides it makes available for regressions for the future.
+
+Preprocessing
+
+Several rules are applied in preprocessing to clean the data. Emojis are mapped as 'EMO_POS' or 'EMO_NEG'. Broken encodings are fixed with the help of functions 'ftfy.fix_text()' and 'html.unescape()', HTML tags also removed.
+Replacements below are done:
+  - HTML tags → space  
+  - URLs → `URL`  
+  - Emails → `EMAIL`  
+  - Phone Numbers → `PHONE`
+
+Hastags are removed and camelCases are splitted. User mentiones are removed.
+Lowercasing is applied Azerbaijani-aware:
+- `I` -> `ı`
+- `İ` -> `i`
+- `i ̇"` -> `i`
+
+ Multiple punctuations are reduced to single punctuation. Numbers are replaced with '<NUM>' token. Unnecessary characters are replaced with spaces and multiple spaces are collapsed. After these processes, the split text is tokenized to Azerbaijani letters and other allowed tokens. Character repetitions are reduced to at most 2 characters. Slangs are normalized with the help of 'SLANG_MAP'. Negators are detected and marked as '_NEG' including the following 3 tokens. One-letter tokens are removed except 'o' and 'e'. Lastly, tokens are joined to create the cleaned sentence.
+
+Here there are some examples from input and output data to compare preprocessing results:
+- An example for hasthang removing:
+   - Before preprocessing: '#pulsuzchorak gəlin dəstək olaq həyata keçirək'
+   - After preprocessing: 'pulsuzchorak gəlin dəstək olaq həyata keçirək'
+ 
+- An example for user and numeric value labeling:
+   - Before preprocessing: '@Fariz qardaş 2-ci pleyeri qoş işləyəcək, yəqin 1-ci pleyerlə baxırsan.'
+   - After preprocessing: 'user qardaş <NUM> ci pleyeri qoş işləyəcək yəqin <NUM> ci pleyerlə baxırsan'
+
+- Some other examples:
+   - Before preprocessing: Özünüzdən #amerika kəşf etməyin...))
+   - After preprocessing: özünüzdən amerika kəşf etməyin
+ 
+   - Before preprocessing: Leo Messi....8 Ballandorlu Dünya Çempionu...gedin yatin və həzz alin ama sakitcə Leooooo Messi
+   - After preprocessing: leo messi <NUM> ballandorlu dünya çempionu gedin yatin və həzz alin ama sakitcə leoo messi
+
+   - Before preprocessing: Çox pis.! 3 ədəd telefonum var. İos və androidlə yoxladım. Hamısında eyniləşdirmə uğursuz olur. Gedin düz əməlli proqram təminatçısı tapın işə götürün.!
+   - After preprocessing: <RATING_NEG> <NUM> ədəd telefonum var ios və androidlə yoxladım hamısında eyniləşdirmə uğursuz olur gedin düz əməlli proqram təminatçısı tapın işə götürün
+
+Mini Challanges
+
+There were some mini challenges that were implemented to enhance the quality of preprocessing and to observe linguistic effects. They are listed below:
+- With calling `re.sub('([a-z])([A-Z])', r'\1 \2', m.group(1))` when normalizing hashtags, camelCases are splitted and it helped us to improve token coverage:
+   - Before: `Messi'nin qazandığı kuboklar və müsbət statistikaları həqiqətən dəhşətdir! O, dünyanın ən yaxşı futbolçularından biridir və əfsanəvi bir karyerası var. Adətən futbol oynamağı xoşlayan birisi olmasam da, Messi kimi əməkdaşların üçün hər zaman böyük bir hörmət hiss edirəm. Fußbol dünyası üçün bir möcüzədir! #Messi #LeoMessi #LionelMessi #futbol   #futbolçu #tarix`
+   - After: `messi'nin qazandığı kuboklar və müsbət statistikaları həqiqətən dəhşətdir o dünyanın ən yaxşı futbolçularından biridir və əfsanəvi bir karyerası var adətən futbol oynamağı xoşlayan birisi olmasam da messi kimi əməkdaşların üçün hər zaman böyük bir hörmət hiss edirəm fu bol dünyası üçün bir möcüzədir messi leo messi lionel messi futbol futbol çu tarix`
+
+- Tagging the next three tokens with tag `_NEG` after the negator altered nearest neighbors significantly:
+   - Before: `Çox gözəl vaxtlar idi Xoşqədəm yoxdu Zaur yox idi Bayramlar Baboslar hər şey təbiidir`
+   - After: `çox gözəl vaxtlar idi xoşqədəm yoxdu zaur yox idi_NEG bayramlar_NEG baboslar_NEG hər şey təbiidir`
+ ...
+
+Domain-Aware
+...
+
 🧠 Embedding Training (Word2Vec & FastText)
 
 The preprocessed Azerbaijani text data from all cleaned datasets were merged into a single corpus.
